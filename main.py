@@ -22,9 +22,10 @@ for i in range(151):
         edu_lst = edu.find_all("div", "field-item even")
         edu_type = edu_lst[0].string
         description = edu_lst[1].string
+        description = description.replace("\r\n", "")
         e = Education(name, link, edu_type, description)
-        json_str = json.dumps(e.__dict__, ensure_ascii=False).encode("utf8")
-        f.write(json_str.decode())
+        json_str = json.dumps(e.__dict__, ensure_ascii=False)
+        f.write(json_str)
         f.write("\n")
     print(i)
 f.close()
